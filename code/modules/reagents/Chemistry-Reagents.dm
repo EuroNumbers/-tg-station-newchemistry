@@ -333,7 +333,7 @@ datum
 			reagent_state = GAS
 			color = "#808080" // rgb: 128, 128, 128
 
-//////  Alakli metals //////
+//////  Alkali metals //////
 
 		lithium
 			name = "Lithium"
@@ -365,7 +365,7 @@ datum
 			color = "#A0A0A0" // rgb: 160, 160, 160
 
 
-//////  Alakline earth metals //////
+//////  Alkaline earth metals //////
 
 //////  Metaloids and non-metals ////
 
@@ -425,8 +425,8 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.adjustToxLoss(1*REM)
-				M.take_organ_damage(1*REM, 0)
+				M.adjustToxLoss(2*REM)
+				M.take_organ_damage(2*REM, 0)
 				..()
 				return
 
@@ -587,7 +587,7 @@ datum
 		radioactivereagent/radium
 			name = "Radium"
 			id = "radium"
-			description = "Radium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Polonium, by Marie SkĹ‚odowska-Curie during her research on radioactivity. For that discovery Marie has won the Nobel prize in chemistry, becoming the first woman to do so."
+			description = "Radium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Polonium, by Marie Skłodowska-Curie during her research on radioactivity. For that discovery Marie has won the Nobel prize in chemistry, becoming the first woman to do so."
 			reagent_state = SOLID
 			color = "#C7C7C7" // rgb: 199,199,199
 			radioactpwr = 3
@@ -595,7 +595,7 @@ datum
 		radioactivereagent/polonium
 			name = "Polonium"
 			id = "polonium"
-			description = "Polonium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Radium, by Marie SkĹ‚odowska-Curie during her research on radioactivity. As a Polish-discovered element, it is very useful for extermination of Russians."
+			description = "Polonium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Radium, by Marie Skłodowska-Curie during her research on radioactivity. As a Polish-discovered element, it is very useful for extermination of Russians."
 			reagent_state = SOLID
 			color = "#C7C7C7" // rgb: 199,199,199
 			radioactpwr = 7
@@ -1448,13 +1448,13 @@ datum
 		anti_toxin_a
 			name = "Anti-Toxin A (Acididexium)"
 			id = "anti_toxin_a"
-			description = "Dylovene is a first response drug in curing tissue damage done by toxins."
+			description = "Acididexium is an anti-toxin designed to neutralize the acidic agents in stomach and bloodstream."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.reagents.remove_all_type(/datum/reagent/acid, 1*REM, 0, 1)
+				M.reagents.remove_all_type(/datum/reagent/acid, 3*REM, 0, 1)
 				M.adjustToxLoss(0.5*REM)
 				..()
 				return
@@ -1462,13 +1462,13 @@ datum
 		anti_toxin_b
 			name = "Anti-Toxin B (Basidexium)"
 			id = "anti_toxin_b"
-			description = "Basidexium neutralizes  "
+			description = "Basidexium is an anti-toxin designed to neutralize the alkali agents in stomach and bloodstream."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.reagents.remove_all_type(/datum/reagent/base, 1*REM, 0, 1)
+				M.reagents.remove_all_type(/datum/reagent/base, 3*REM, 0, 1)
 				M.adjustToxLoss(0.5*REM)
 				..()
 				return
@@ -1482,8 +1482,8 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.reagents.remove_all_type(/datum/reagent/heavymetal, 1*REM, 0, 1)
-				M.adjustToxLoss(1*REM)
+				M.reagents.remove_all_type(/datum/reagent/heavymetal, 3*REM, 0, 1)
+				M.adjustToxLoss(0.5*REM)
 				..()
 				return
 
@@ -1503,7 +1503,7 @@ datum
 				holder.remove_reagent("anti_toxin_r", 2*REM)
 				holder.remove_reagent("anti_toxin_t", 2*REM)
 				holder.remove_reagent("anti_toxin_z", 2*REM)
-				M.reagents.remove_all_type(/datum/reagent/medicine, 2*REM, 0, 1)
+				M.reagents.remove_all_type(/datum/reagent/medicine, 3*REM, 0, 1)
 				M.drowsyness = max(M.drowsyness-2*REM, 0)
 				M.hallucination = max(0, M.hallucination - 5*REM)
 				M.adjustToxLoss(-3*REM)
@@ -1513,7 +1513,7 @@ datum
 		anti_toxin_p
 			name = "Anti-Toxin P (Plasmoxan)"
 			id = "anti_toxin_p"
-			description = "Plasmoxan is used to treat plasma poisoning. Causes light drowziness. Users are not advised to operate machinery after its use."
+			description = "Plasmoxan is used to treat plasma poisoning. Causes light drowsyness. Users are not advised to operate machinery after its use."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
@@ -1528,13 +1528,13 @@ datum
 		anti_toxin_r
 			name = "Anti-Toxin R (RadAway)"
 			id = "anti_toxin_r"
-			description = "For purging your bodystream from radiocative particles! Comes with a cupon for a six-pack of Nuka-Cola."
+			description = "For purging your bodystream from radioactive particles! Comes with a cupon for a six-pack of Nuka-Cola."
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.reagents.remove_all_type(/datum/reagent/radioactivereagent, 2*REM, 0, 1)
+				M.reagents.remove_all_type(/datum/reagent/radioactivereagent, 3*REM, 0, 1)
 				..()
 				return
 
@@ -1548,8 +1548,7 @@ datum
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				holder.remove_reagent("toxin", 2*REM)
-				M.reagents.remove_all_type(/datum/reagent/toxin/artificaltox, 1*REM, 0, 1)
-				M.adjustToxLoss(0.5*REM)
+				M.reagents.remove_all_type(/datum/reagent/toxin/artificaltox, 2*REM, 0, 1)
 				..()
 				return
 
@@ -1562,8 +1561,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				M.reagents.remove_all_type(/datum/reagent/toxin/naturaltox, 1*REM, 0, 1)
-				M.adjustToxLoss(0.5*REM)
+				M.reagents.remove_all_type(/datum/reagent/toxin/naturaltox, 2*REM, 0, 1)
 				..()
 				return
 
@@ -1851,10 +1849,10 @@ datum
 		medicine/tricordrazine
 			name = "Tricordrazine"
 			id = "tricordrazine"
-			description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries. DO NOT USE WITH KELOTANE, ALKYSINE, BICARIDINE. LD50 = 30 units"
+			description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries. DO NOT USE WITH KELOTANE, ALKYSINE, BICARIDINE. LD50 = 40 units"
 			reagent_state = LIQUID
 			color = "#C8A5DC" // rgb: 200, 165, 220
-			medicinetox = 15
+			medicinetox = 20
 			overdosetype = ODDIZZY | ODTOXIC | ODFEVER
 			interactingreagent = "kelotane"
 			interactingpwr = 3
@@ -1864,10 +1862,10 @@ datum
 				if(M.stat == 2.0)
 					return
 				if(!M) M = holder.my_atom
-				if(M.getOxyLoss() && prob(80)) M.adjustOxyLoss(-1*REM)
-				if(M.getBruteLoss() && prob(80)) M.heal_organ_damage(1*REM,0)
-				if(M.getFireLoss() && prob(80)) M.heal_organ_damage(0,1*REM)
-				if(M.getToxLoss() && prob(80)) M.adjustToxLoss(-1*REM)
+				if(M.getOxyLoss() && prob(70)) M.adjustOxyLoss(-1*REM)
+				if(M.getBruteLoss() && prob(70)) M.heal_organ_damage(1*REM,0)
+				if(M.getFireLoss() && prob(70)) M.heal_organ_damage(0,1*REM)
+				if(M.getToxLoss() && prob(70)) M.adjustToxLoss(-1*REM)
 				..()
 				return
 
@@ -2313,7 +2311,7 @@ datum
 		toxin/artificialtox    // Artifical toxins - simpler stuff
 			name = "Artificial Toxin"
 			id = "arttoxin"
-			description = "Artifically created toxin. It's less complex than protein-based toxins from animals and plants but still have deadly effect on the people."
+			description = "Artifically created toxin. It's less complex than protein-based toxins from animals and plants but has the same deadly effect on the people."
 			reagent_state = SOLID
 			color = "#792300" // rgb: 121, 35, 0
 			toxpwr = 4
