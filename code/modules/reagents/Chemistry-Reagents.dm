@@ -1049,9 +1049,9 @@ datum
 			aromabrutepwr = 0
 			aromaburnpwr = 0
 
-		phenyl/flourobenzne
-			name = "Flourobenzne"
-			id = "fluorobenzne"
+		phenyl/flourobenzene
+			name = "Flourobenzene"
+			id = "fluorobenzene"
 			description = "Smells horrible. Precursor for a hell lot of deadly stuff."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
@@ -1061,9 +1061,9 @@ datum
 			aromabrutepwr = 0
 			aromaburnpwr = 1
 
-		phenyl/chlorobenzne
-			name = "Chlorobenzne"
-			id = "chlorobenzne"
+		phenyl/chlorobenezne
+			name = "Chlorobenezne"
+			id = "chlorobenezne"
 			description = "Smells horrible. Precursor for pesticides."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
@@ -1074,8 +1074,8 @@ datum
 			aromaburnpwr = 1
 
 		phenyl/bromobenzene
-			name = "Bromobenzne"
-			id = "bromobenzne"
+			name = "Bromobenzene"
+			id = "bromobenzene"
 			description = "Smells horrible. Used in medicine synthesis"
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
@@ -1086,8 +1086,8 @@ datum
 			aromaburnpwr = 1
 
 		phenyl/iodobenzene
-			name = "Iodobenzne"
-			id = "iodobenzne"
+			name = "Iodobenzene"
+			id = "iodobenzene"
 			description = "Smells horrible. Used in medicine synthesis"
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
@@ -1117,6 +1117,18 @@ datum
 			color = "#A00000" // rgb: 160,0,0
 			aromatoxpwr = 1
 			aromaclonepwr = 1
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 0
+			
+		phenyl/nitrobenzene
+			name = "Nitrobenzene"
+			id = "nitrobenzene"
+			description = "A simple nitrous compound of benzne. Mildly explosive."
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
 			aromabrainpwr = 0
 			aromabrutepwr = 0
 			aromaburnpwr = 0			
@@ -1422,7 +1434,7 @@ datum
 
 		carbonscaffold/N73
 			name = "Carbon Scaffolding no.73"
-			id = "carbonscaffolding72"
+			id = "carbonscaffolding73"
 			description = "Carbon Scaffolding no. 72, full of acidic centres"
 			reagent_state = SOLID
 			color = "#7CFC00" // rgb: 124,252,0
