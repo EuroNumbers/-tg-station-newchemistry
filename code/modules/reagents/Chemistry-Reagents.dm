@@ -414,7 +414,7 @@ datum
 				M.adjustToxLoss(1*REM)
 				M.take_organ_damage(1*REM, 0)
 				..()
-				return			
+				return
 
 		fluorine
 			name = "Fluorine"
@@ -587,7 +587,7 @@ datum
 		radioactivereagent/radium
 			name = "Radium"
 			id = "radium"
-			description = "Radium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Polonium, by Marie Skłodowska-Curie during her research on radioactivity. For that discovery Marie has won the Nobel prize in chemistry, becoming the first woman to do so."
+			description = "Radium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Polonium, by Marie SkĹ‚odowska-Curie during her research on radioactivity. For that discovery Marie has won the Nobel prize in chemistry, becoming the first woman to do so."
 			reagent_state = SOLID
 			color = "#C7C7C7" // rgb: 199,199,199
 			radioactpwr = 3
@@ -595,7 +595,7 @@ datum
 		radioactivereagent/polonium
 			name = "Polonium"
 			id = "polonium"
-			description = "Polonium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Radium, by Marie Skłodowska-Curie during her research on radioactivity. As a Polish-discovered element, it is very useful for extermination of Russians."
+			description = "Polonium is an alkaline earth metal. It is extremely radioactive. It was first found, along with Radium, by Marie SkĹ‚odowska-Curie during her research on radioactivity. As a Polish-discovered element, it is very useful for extermination of Russians."
 			reagent_state = SOLID
 			color = "#C7C7C7" // rgb: 199,199,199
 			radioactpwr = 7
@@ -632,13 +632,13 @@ datum
 				..()
 				return
 
-		salt/lithiumchloride	
+		salt/lithiumchloride
 			name = "Lithium Chloride"
 			id = "lithiumchloride"
 			description = "A salt of lithium. Used to control populace."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-			
+
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				if(M.canmove && istype(M.loc, /turf/space))
@@ -653,15 +653,15 @@ datum
 			description = "A salt of sodium. Commonly used to season food."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-			
-		salt/potassiumchloride	
+
+		salt/potassiumchloride
 			name = "Potassium Chloride"
 			id = "potassiumchloride"
 			description = "A salt of potassium. The OTHER salt."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
 
-		salt/toxicsalt/iron3chloride	
+		salt/toxicsalt/iron3chloride
 			name = "Iron (III) Chloride"
 			id = "iron3chloride"
 			description = "A corrosive salt made of potassium chloride. Very useful for organic reactions."
@@ -670,14 +670,34 @@ datum
 			salttoxpwr = 1
 			saltburnpwr = 2
 			saltbrutepwr = 0
-			
+
+		salt/toxicsalt/aluminiumchloride
+			name = "Aluminium Chloride"
+			id = "aluminiumchloride"
+			description = "A corrosive salt used as a catalyst in Frield-Crafts reaction."
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			salttoxpwr = 0
+			saltburnpwr = 1
+			saltbrutepwr = 0
+
+		salt/toxicsalt/phosphorustribromide
+			name = "Phosphorus Tribromide"
+			id = "phosphorustribromide"
+			description = "A poisonous bromide used as an organic reaction catalyst."
+			reagent_state = LIQUID
+			color = "#FFFFFF" // rgb: 255,255,255
+			salttoxpwr = 0
+			saltburnpwr = 1
+			saltbrutepwr = 0
+
 		salt/lithiumsulfate
 			name = "Lithium Sulfate"
 			id = "lithiumsulfate"
 			description = "A salt of lithium. Used to treat bipolar disorders."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-			
+
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
 				if(M.canmove && istype(M.loc, /turf/space))
@@ -685,28 +705,28 @@ datum
 				if(prob(5)) M.emote(pick("twitch","drool","moan"))
 				..()
 				return
-						
+
 		salt/sodiumsulfate
 			name = "Sodium Sulfate"
 			id = "sodiumsulfate"
 			description = "A salt of sodium. Used as laxative to purge medicine from one's stomach. Ow."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-					
+
 			on_mob_life(var/mob/living/M as mob)  // This should be only done for medicine in stomach. But currently, let's sad bloodstream works.
 				if(!M) M = holder.my_atom
-				holder.remove_reagent("anti_toxin", 4*REM) 
+				holder.remove_reagent("anti_toxin", 4*REM)
 				M.reagents.remove_all_type(/datum/reagent/medicine, 1*REM, 0, 1)
 				..()
-				return		
-		
+				return
+
 		salt/potassiumsulfate
 			name = "Potassium Sulfate"
 			id = "potassiumsulfate"
 			description = "A salt of potassium. Works as a fertilizer for some plants."
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-			
+
 		salt/toxicsalt/lithiumnitrate
 			name = "Lithium Nitrate"
 			id = "lithium nitrate"
@@ -715,23 +735,23 @@ datum
 			color = "#FFFFFF" // rgb: 255,255,255
 			salttoxpwr = 1
 			saltburnpwr = 1
-			saltbrutepwr = 0		
-			
+			saltbrutepwr = 0
+
 		salt/sodiumnitrate
 			name = "Sodium Nitrate"
 			id = "sodiumnitrate"
 			description = "A salt commonly refered to as Chile saltpeter. Used for explosives, oxidizer and as a plant nutriment"
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-	
+
 		salt/potassiumnitrate
 			name = "Potassium Nitrate"
 			id = "potassiumnitrate"
 			description = "A salt commonly refered to as salt petre. Used for pickling, gunpowder and as a plant nutriment"
 			reagent_state = SOLID
 			color = "#FFFFFF" // rgb: 255,255,255
-		
-			
+
+
 
 //////////////// ACIDS //////////////////////////////
 
@@ -964,6 +984,144 @@ datum
 
 //////////////// ORGANIC STUFF /////////////////////
 
+//////// AROMATICS ///////////
+
+		phenyl
+			name = "Benzene"
+			id = "benzene"
+			description = "Basic aromatic carbon compound. Extremly toxic!"
+			reagent_state = LIQUID
+			color = "#FFFFFF" // rgb: 255,255,255
+			var/aromatoxpwr = 1
+			var/aromaclonepwr = 1
+			var/aromabrainpwr = 0
+			var/aromabrutepwr = 0
+			var/aromaburnpwr = 0
+
+			on_mob_life(var/mob/living/M as mob)
+				if(!M) M = holder.my_atom
+				if(aromatoxpwr)
+					M.adjustToxLoss(aromatoxpwr*REM)
+				if(aromaclonepwr)
+					M.adjustCloneLoss(aromaclonepwr*REM)
+				if(aromabrainpwr)
+					M.adjustBrainLoss(aromabrainpwr*REM)
+				if(aromabrutepwr)
+					M.take_organ_damage(aromabrutepwr*REM, 0)
+				if(aromaburnpwr)
+					M.take_organ_damage(0, aromaburnpwr*REM)
+				..()
+				return
+
+		phenyl/phenol
+			name = "Phenol"
+			id = "phenol"
+			description = "A benzne ring with a hydroxyl group added"
+			reagent_state = LIQUID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 1
+			aromaburnpwr = 1
+			
+		phenyl/toluene
+			name = "Toluene"
+			id = "toluene"
+			description = "A benzne ring with a single methyl group added to it. Least toxic of basic phenyls"
+			reagent_state = LIQUID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 0
+
+		phenyl/trinitrotoluene
+			name = "Trinitrotoluene"
+			id = "trinitrotoluene"
+			description = "TNT. Yes. That stuff. Needs ignition for it to fire"
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 0
+
+		phenyl/flourobenzne
+			name = "Flourobenzne"
+			id = "fluorobenzne"
+			description = "Smells horrible. Precursor for a hell lot of deadly stuff."
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 1
+
+		phenyl/chlorobenzne
+			name = "Chlorobenzne"
+			id = "chlorobenzne"
+			description = "Smells horrible. Precursor for pesticides."
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 1
+
+		phenyl/bromobenzene
+			name = "Bromobenzne"
+			id = "bromobenzne"
+			description = "Smells horrible. Used in medicine synthesis"
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 1
+
+		phenyl/iodobenzene
+			name = "Iodobenzne"
+			id = "iodobenzne"
+			description = "Smells horrible. Used in medicine synthesis"
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 1
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 0
+
+		phenyl/benzoicacid
+			name = "Benzoic Acid"
+			id = "benzoicacid"
+			description = "Common food preservant. Can damage your nervous system if too much is ingested!"
+			reagent_state = SOLID
+			color = "#FFFFFF" // rgb: 255,255,255
+			aromatoxpwr = 0
+			aromaclonepwr = 0
+			aromabrainpwr = 0
+			aromabrutepwr = 1
+			aromaburnpwr = 0
+			
+		phenyl/aniline
+			name = "Aniline"
+			id = "aniline"
+			description = "A rather vile amine capable of causing blood poisoning during extended exposure."
+			reagent_state = LIQUID
+			color = "#A00000" // rgb: 160,0,0
+			aromatoxpwr = 1
+			aromaclonepwr = 1
+			aromabrainpwr = 0
+			aromabrutepwr = 0
+			aromaburnpwr = 0			
+
+
 //////// ALCOHOL /////////////
 
 /*boozepwr chart
@@ -1026,6 +1184,7 @@ datum
 			reagent_state = LIQUID
 			color = "#404030" // rgb: 64, 64, 48
 			boozepwr = 10 //lower numbers mean the booze will have an effect faster.
+			// EYE DAMAGE CODE GOES HERE
 
 //////// AMINES //////////////
 
@@ -1039,7 +1198,7 @@ datum
 		nitroglycerin
 			name = "Nitroglycerin"
 			id = "nitroglycerin"
-			description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
+			description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerine."
 			reagent_state = LIQUID
 			color = "#808080" // rgb: 128, 128, 128
 
@@ -1080,10 +1239,10 @@ datum
 
 /////////////// FATS & OILS //////////////////////////////////
 
-		glycerol
-			name = "Glycerol"
-			id = "glycerol"
-			description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
+		glycerine
+			name = "Glycerine"
+			id = "glycerine"
+			description = "Glycerine is a simple polyol compound. Glycerine is sweet-tasting and of low toxicity."
 			reagent_state = LIQUID
 			color = "#808080" // rgb: 128, 128, 128
 
@@ -1118,7 +1277,7 @@ datum
 			id = "lard"
 			description = "Muh Lurd."
 			nutriment_factor = 20 * REAGENTS_METABOLISM
-			reagent_state = LIQUID
+			reagent_state = SOLID
 			color = "#FFFFE0" // rgb: 128, 128, 128
 
 			on_mob_life(var/mob/living/M as mob)
@@ -1196,39 +1355,118 @@ datum
 			reagent_state = LIQUID
 			color = "#7CFC00" // rgb: 124,252,0
 
+///////////// SCAFFOLDS //////////
 
-///////////// NON-USABLE ORGANIC PRODUCT PRECURSORS //////////
+		carbonscaffold
+			name = "Carbon Scaffolding no.21"
+			id = "carbonscaffolding21"
+			description = "Carbon Scaffolding no. 21, used primarly for making detoxant medicine"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+		
+		carbonscaffold/N27
+			name = "Carbon Scaffolding no.27"
+			id = "carbonscaffolding27"
+			description = "Carbon Scaffolding no. 27, used primarly for making cryogenic medicine"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N41
+			name = "Carbon Scaffolding no.41"
+			id = "carbonscaffolding41"
+			description = "Carbon Scaffolding no. 41, used primarly for making medicine curing brain damage"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N46
+			name = "Carbon Scaffolding no.46"
+			id = "carbonscaffolding46"
+			description = "Carbon Scaffolding no. 46, used primarly for making medicine curing tissue damage"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N47
+			name = "Carbon Scaffolding no.47"
+			id = "carbonscaffolding47"
+			description = "Carbon Scaffolding no. 47, used primarly for making medicine curing tissue damage"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N51
+			name = "Carbon Scaffolding no.51"
+			id = "carbonscaffolding51"
+			description = "Carbon Scaffolding no. 51, full of oxygen carrying centres"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N63
+			name = "Carbon Scaffolding no.63"
+			id = "carbonscaffolding63"
+			description = "Carbon Scaffolding no. 63, used primarly for making medicine curing tissue damage"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N67
+			name = "Carbon Scaffolding no.67"
+			id = "carbonscaffolding67"
+			description = "Carbon Scaffolding no. 67, used primarly for making medicine curing genetic abnormalities"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N72
+			name = "Carbon Scaffolding no.72"
+			id = "carbonscaffolding72"
+			description = "Carbon Scaffolding no. 72, full of alkaline centres"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N73
+			name = "Carbon Scaffolding no.73"
+			id = "carbonscaffolding72"
+			description = "Carbon Scaffolding no. 72, full of acidic centres"
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+		carbonscaffold/N100
+			name = "Carbon Scaffolding no.100"
+			id = "carbonscaffolding100"
+			description = "Carbon Scaffolding no. 100, newest addition to the Nanotransen carbon scaffolding database. It is said to revolutionize making of some medicine."
+			reagent_state = SOLID
+			color = "#7CFC00" // rgb: 124,252,0
+
+
+///////////// NON-USABLE BIOORGANIC PRODUCT PRECURSORS //////////
 
 		betacarotene
 			name = "Beta carotene"
 			id = "betacarotene"
 			description = "One of many Carotene forms commonly found in foods such as carrots. Known for it's orange-red colour"
-			reagent_state = LIQUID
+			reagent_state = SOLID
 			color = "#FFA500" // rgb: 255,165,0
 
 		chlorophyllb
 			name = "Chlorophyll b"
 			id = "chlorophyllb"
 			description = "A green dye commonly found in most plants - responsible for photosythesis reactions."
-			reagent_state = LIQUID
+			reagent_state = SOLID
 			color = "#008000" // rgb: 0,128,0
 
 		flavanol
 			name = "Flavanol"
 			id = "flavanol"
 			description = "A compound known for it's anti-oxidant and skin-protection properties. Commonly found in grapes."
-			reagent_state = LIQUID
+			reagent_state = SOLID
 			color = "#7CFC00" // rgb: 124,252,0
 
 		vitaminc
 			name = "Vitamin C"
 			id = "vitaminc"
 			description = "Ascorbic acid. Famous for fighting all manners of scurvy. Yarr."
-			reagent_state = LIQUID
+			reagent_state = SOLID
 			color = "#FFFF00" // rgb: 255,255,0
 
 
-///////////// USABLE ORGANIC PRODUCT PRECURSORS //////////////
+///////////// USABLE BIOORGANIC PRODUCT PRECURSORS //////////////
 
 		capsaicin
 			name = "Capsaicin Oil"
@@ -2745,7 +2983,7 @@ datum
 				M.adjustFireLoss(1)
 				..()
 				return
-				
+
 		gunpowder
 			name = "Gunpowder"
 			id = "gunpowder"
