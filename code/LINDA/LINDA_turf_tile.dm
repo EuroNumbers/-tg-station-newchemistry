@@ -220,6 +220,12 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 			if(consider_superconductivity(starting = 1))
 				remove = 0
 
+	if((air.temperature > MINIMUM_TEMPERATURE_START_REACTION) && (air.temperature <= FIRE_MINIMUM_TEMPERATURE_TO_EXIST)) // No need to double-call
+		for(var/atom/movable/item in src)
+			if (istype(item, /obj/item/weapon/reagent_containers)) item.temperature_expose(air, air.temperature, CELL_VOLUME) // Trigger only the reagent_holders. Don't trigger anything else!
+		// THIS NEEDS TO CHECK FOR ITEMS BEING HELD IN HANDS OR IN POCKETS!!!!!!!!!!!!!
+		// ADD THIS LATER
+
 	if(!excited_group && remove == 1)
 		air_master.remove_from_active(src)
 
