@@ -505,6 +505,13 @@ datum
 			description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known. Its superb conductive properties are well known and its often used in electronics of all kind for contacts."
 			reagent_state = SOLID
 			color = "#F7C430" // rgb: 247, 196, 48
+			
+		tin
+			name = "Tin"
+			id = "tin"
+			description = "A component of many alloys as well as important metal for soldering. Tin is a metal known since antiquity and will probably be here to stay for lot longer."
+			reagent_state = SOLID
+			color = "#C8C8C8" // rgb: 200, 200, 200			
 
 
 //// Heavy metals /////
