@@ -50,6 +50,9 @@ datum
 
 		proc
 
+			temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+				return
+
 			remove_any(var/amount=1)
 				var/total_transfered = 0
 				var/current_list_element = 1
@@ -226,6 +229,26 @@ datum
 								continue
 
 							var/datum/chemical_reaction/C = reaction
+
+							if(C.temperatureneeded)
+								var/turf/simulated/currentturf = get_turf(my_atom)
+								var/datum/gas_mixture/enviroment = currentturf.return_air()
+								
+// 					Uncomment this once hotplate is finished
+
+//								if(istype(my_atom.loc, /obj/machinery/chemicaltemperaturestabilizer))
+//									if((my_atom.loc:currenttemperature < C.lowtemperature) || (my_atom.loc:currenttemperature >= C.hightemperature))
+//										continue
+//
+//								else
+
+//					Atmospherics-related code 					
+
+								if(( enviroment.temperature < C.lowtemperature) || ( enviroment.temperature >= C.hightemperature ))
+									continue
+
+
+
 							var/total_required_reagents = C.required_reagents.len
 							var/total_matching_reagents = 0
 							var/total_required_catalysts = C.required_catalysts.len
@@ -270,7 +293,9 @@ datum
 								if(C.result)
 									feedback_add_details("chemical_reaction","[C.result]|[C.result_amount*multiplier]")
 									multiplier = max(multiplier, 1) //this shouldnt happen ...
-									add_reagent(C.result, C.result_amount*multiplier)
+									add_reagent(C.result, C.result_amount*multiplier*C.efficency)
+									if (C.waste)
+										add_reagent(C.waste, C.result_amount*multiplier*(1-C.efficency))
 
 								var/list/seen = viewers(4, get_turf(my_atom))
 
