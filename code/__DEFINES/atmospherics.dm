@@ -36,6 +36,7 @@
 #define MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER		0.5		//Minimum temperature difference before the gas temperatures are just set to be equal
 #define MINIMUM_TEMPERATURE_FOR_SUPERCONDUCTION		T20C+10
 #define MINIMUM_TEMPERATURE_START_SUPERCONDUCTION	T20C+200
+#define MINIMUM_TEMPERATURE_START_REACTION		T0C-250         //Minimum temperature to check for reaction start
 #define FLOOR_HEAT_TRANSFER_COEFFICIENT		0.4
 #define WALL_HEAT_TRANSFER_COEFFICIENT		0.0
 #define DOOR_HEAT_TRANSFER_COEFFICIENT		0.0
