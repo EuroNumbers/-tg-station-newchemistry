@@ -37,9 +37,6 @@ obj/machinery/chemicaltemperaturestabilizer/attackby(obj/item/weapon/W as obj, m
 			user << "\blue You put the [held_container] onto the [src]."
 			var/image/I = image("icon"=W, "layer"=FLOAT_LAYER)
 			underlays += I
-			if(heating)
-				spawn(heat_time)
-					try_heating()
 	else
 		user << "\red You can't put the [W] onto the [src]."
 
