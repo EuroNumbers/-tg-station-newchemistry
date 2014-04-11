@@ -1,9 +1,8 @@
-#DEFINE HEATINGPOWER 400  // biggest delta T between surrounding and the heating object when it's on
-#DEFINE ATMOSADJUSTPOWER 20 // delta T per tick when an open-topped stabilizer is off
+#define HEATINGPOWER 400  // biggest delta T between surrounding and the heating object when it's on
+#define ATMOSADJUSTPOWER 20 // delta T per tick when an open-topped stabilizer is off
 
 // WARNING: THIS CODE MIGHT OR MIGHT NOT WORK. I HAVE NO IDEA. IT WAS NEVER COMPILED AND WAS NEVER TESTED DUE TO LACK OF TIME.
 // SERIOUS SANITANTION IS NEEDED AS WELL AS SOME OPTIMIZATIONS
-// MAKE SURE THE ATMOSPHERICS CODE DO NOT AND I REPEAT DO NOT CALL TEMPERATURE_EXPOSURE ON THE CONTAINERS HELD BY THESE
 // Fuck get_turf
 
 obj/machinery/chemicaltemperaturestabilizer
@@ -50,73 +49,73 @@ obj/machinery/chemicaltemperaturestabilizer/attack_hand(mob/user as mob)
 	else
 		user << "\red There is nothing on the [src]."
 
-obj/machinery/chemicaltemperaturestabilizer/temperaturenormalization() // Temperature normalization - when the thing is off, temperature should adjust to turf's temperature.
+obj/machinery/chemicaltemperaturestabilizer/proc/temperaturenormalization() // Temperature normalization - when the thing is off, temperature should adjust to turf's temperature.
 
-	var/turf/simulated/currentturf = get_turf(my_atom)
+	var/turf/simulated/currentturf = get_turf(src)
 	var/datum/gas_mixture/enviroment = currentturf.return_air()	// I HATE THE FACT I HAVE TO DO THIS
-	
-	if currenttemperature > enviroment.temperature												// Stabilize temperature down
-		currenttemperature = max(currenttemperature-ATMOSADJUSTPOWER, enviroment.temperature)   
+
+	if (currenttemperature > enviroment.temperature)												// Stabilize temperature down
+		currenttemperature = max(currenttemperature-ATMOSADJUSTPOWER, enviroment.temperature)
 		return
-	
-	if currenttemperature < enviroment.temperature												// Stabilize temperature up
+
+	if (currenttemperature < enviroment.temperature)												// Stabilize temperature up
 		currenttemperature = min(currenttemperature+ATMOSADJUSTPOWER, enviroment.temperature)
 		return
 
 
-obj/machinery/chemicaltemperaturestabilizer/temperatureadjustment()    // Temperature adjustment - heating and cooling function. Uses get_turf() if the thing is open.
+obj/machinery/chemicaltemperaturestabilizer/proc/temperatureadjustment()    // Temperature adjustment - heating and cooling function. Uses get_turf() if the thing is open.
 
 	if(open)														  // If it's open-topped make sure it has enough power to heat it up. If it doesn't, use ATMOS MAGICS
-		var/turf/simulated/currentturf = get_turf(my_atom)
+		var/turf/simulated/currentturf = get_turf(src)
 		var/datum/gas_mixture/enviroment = currentturf.return_air()
 		if (abs(currenttemperature-enviroment.temperature) > HEATINGPOWER)  // Check HEATING POWER both ways. I made it a define cause it will be adjustable to put more/less strain on atmos and more/less realism. Best to have it around 400-500 for best effects.
-		temperaturenormalization()											// Clever eh? Possibly have the temperature pass to normalization as a parametr to limit get_turfs
+			src.temperaturenormalization()											// Clever eh? Possibly have the temperature pass to normalization as a parametr to limit get_turfs
 		return
-		
+
 	if((currenttemperature < settemperature) && (heater))						// Heaters heat stuff
-		currenttemperature =+ delta_Temp_increase
+		currenttemperature += delta_Temp_increase
 		currenttemperature = min(currenttemperature, settemperature)
 		return
-		
+
 	if((currenttemperature > settemperature) && (cooler))						// Coolers cool stuff
 		currenttemperature =- delta_Temp_decrease
 		currenttemperature = max(currenttemperature, settemperature)
 		return
-		
+
 
 obj/machinery/chemicaltemperaturestabilizer/process()
-	
+
 	if(stat & (NOPOWER|BROKEN))	return //If unpowered or broken, don't do a thing
-	
+
 	if((on == 1) && (currenttemperature == settemperature) && (held_container))		// If currenttemp = settemp, then don't bother doing adjustments
-		spawn(tempchangedelay)
+		spawn(delta_time)
 		held_container.reagents.handle_reactions()
 		return
-	
+
 	if((on == 1) && (currenttemperature <> settemperature) && (held_container))		// Adjust the temperatures for open and closed containers as long as they run
-		spawn(tempchangedelay)
-		temperatureadjustment()
+		spawn(delta_time)
+		src.temperatureadjustment()
 		held_container.reagents.handle_reactions()
 		return
-	
+
 	if((on == 0) && (held_container) && (open))										// For open-topped make them cool off
-		spawn(tempchangedelay)
-		temperaturenormalization()	
+		spawn(delta_time)
+		src.temperaturenormalization()
 		held_container.reagents.handle_reactions()
 		return
-		
+
 
 
 obj/machinery/chemicaltemperaturestabilizer/hotplate
 	name = "Hotplate."
 	desc = "Chemists' best friend... right after a bottle of vodka and a bed he/she cries on every night." // I hate my life and I wish to die - Numbers
-	delta_Temp_increase = 20	
+	delta_Temp_increase = 20
 	settemperature  = T20C
 	mintemperature  = T20C
-	maxtemperature  = T0C+400	
+	maxtemperature  = T0C+400
 	heater = 1
 	cooler = 0
-	open = 1	
+	open = 1
 
 
 obj/machinery/chemicaltemperaturestabilizer/oven
