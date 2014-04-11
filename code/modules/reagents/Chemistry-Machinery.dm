@@ -16,9 +16,11 @@
 	var/beaker = null
 	var/recharged = 0
 	var/recharge_delay = 15  //Time it game ticks between recharges
-	var/list/dispensable_reagents = list("hydrogen","lithium","carbon","nitrogen","oxygen","fluorine",
-	"sodium","aluminium","silicon","phosphorus","sulfur","chlorine","potassium","iron",
-	"copper","mercury","radium","water","ethanol","sugar","sacid")
+	var/list/dispensable_reagents = list("hydrogen", "nitrogen", "oxygen","fluorine", "chlorine", "bromine", "iodine", "lithium", "sodium", "potassium", 
+	"carbon", "aluminium","silicon","phosphorus","sulfur", "vanadium", "iron", "nickel", "copper","mercury", "tin", "lead", "radium", "water", "acetacid", 
+	"methanol", "ethanol", "ammonia", "sugar", "clacid", "nacid", "sacid", "nabase", "kbase", "benzene", "toluene",
+	"carbonscaffolding21", "carbonscaffolding27", "carbonscaffolding41", "carbonscaffolding46", "carbonscaffolding47", "carbonscaffolding51", 
+	"carbonscaffolding63", "carbonscaffolding67", "carbonscaffolding72", "carbonscaffolding73", "carbonscaffolding100")
 
 /obj/machinery/chem_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
@@ -53,19 +55,19 @@
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				qdel(src)
 				return
 
 /obj/machinery/chem_dispenser/blob_act()
 	if (prob(50))
-		del(src)
+		qdel(src)
 
 /obj/machinery/chem_dispenser/meteorhit()
-	del(src)
+	qdel(src)
 	return
 
  /**
@@ -265,19 +267,19 @@
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			del(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				del(src)
+				qdel(src)
 				return
 
 /obj/machinery/chem_master/blob_act()
 	if (prob(50))
-		del(src)
+		qdel(src)
 
 /obj/machinery/chem_master/meteorhit()
-	del(src)
+	qdel(src)
 	return
 
 /obj/machinery/chem_master/power_change()
@@ -831,7 +833,7 @@ obj/machinery/computer/pandemic/proc/replicator_cooldown(var/waittime)
 				/obj/item/stack/sheet/mineral/plasma = list("plasma" = 20),
 				/obj/item/stack/sheet/metal = list("iron" = 20),
 				/obj/item/stack/sheet/plasteel = list("iron" = 20, "plasma" = 20),
-				/obj/item/stack/sheet/wood = list("carbon" = 20),
+				/obj/item/stack/sheet/mineral/wood = list("carbon" = 20),
 				/obj/item/stack/sheet/glass = list("silicon" = 20),
 				/obj/item/stack/sheet/rglass = list("silicon" = 20, "iron" = 20),
 				/obj/item/stack/sheet/mineral/uranium = list("uranium" = 20),
@@ -1097,7 +1099,7 @@ obj/machinery/computer/pandemic/proc/replicator_cooldown(var/waittime)
 
 /obj/machinery/reagentgrinder/proc/remove_object(var/obj/item/O)
 		holdingitems -= O
-		del(O)
+		qdel(O)
 
 /obj/machinery/reagentgrinder/proc/juice()
 		power_change()
@@ -1227,6 +1229,8 @@ obj/machinery/computer/pandemic/proc/replicator_cooldown(var/waittime)
 		for (var/obj/item/weapon/reagent_containers/O in holdingitems)
 				if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 						break
+				O.reagents.remove_all_type(/datum/reagent/medicine, O.volume, 0, 1)		// Medicine should be synthetizable, not doable
+				O.reagents.remove_all_type(/datum/reagent/anti_toxin, O.volume, 0, 1)	// So does antitoxin.
 				var/amount = O.reagents.total_volume
 				O.reagents.trans_to(beaker, amount)
 				if(!O.reagents.total_volume)
